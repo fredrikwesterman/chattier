@@ -7,11 +7,10 @@ const Home = () => {
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-neutral-content text-center">
           <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold">CHATTIER</h1>
+            <h1 className="mb-5 text-8xl font-bold">CHATTIER</h1>
             <p className="mb-5">
-              Welcome, here you can chat with yourself! Sometimes the best
-              person to talk to is yourself. If you have not tried it, do it
-              now!
+              <br /> Here you can chat with yourself! Maybe with a friend.
+              <br /> It depends on how good i am at coding 🤷‍♂️
             </p>
             <div>
               <Link to="/login">

@@ -20,9 +20,11 @@ const LoginForm = () => {
             <input type="password" className="grow" placeholder="password" />
           </label>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Login</button>
+            <button className="btn btn-primary px-8">Login</button>
             <Link to="/register">
-              <button className="btn btn-outline btn-primary">Register</button>
+              <button className="btn btn-outline btn-primary px-6">
+                Register
+              </button>
             </Link>
           </div>
         </div>

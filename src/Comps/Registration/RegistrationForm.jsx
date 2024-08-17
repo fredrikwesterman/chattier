@@ -38,7 +38,7 @@ const RegistrationForm = ({
               }}
             />
           </label>
-          <label className="input input-bordered flex items-center gap-2">
+          <label className="input input-bordered flex items-center gap-2 mb-4">
             <input
               type="email"
               className="grow"
@@ -49,11 +49,13 @@ const RegistrationForm = ({
             />
           </label>
           <div className="card-actions justify-end">
-            <button onClick={registerNewUser} className="btn btn-primary">
+            <button onClick={registerNewUser} className="btn btn-primary px-6">
               Register
             </button>
             <Link to="/login">
-              <button className="btn btn-outline btn-primary">Login</button>
+              <button className="btn btn-outline btn-primary px-8">
+                Login
+              </button>
             </Link>
           </div>
         </div>
