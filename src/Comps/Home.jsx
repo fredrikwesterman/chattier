@@ -14,12 +14,14 @@ const Home = () => {
               now!
             </p>
             <div>
-              <button className="btn btn-primary mr-3 px-10">
-                <Link to="/login">Login</Link>
-              </button>
-              <button className="btn btn-outline btn-primary px-10">
-                <Link to="/register">Register</Link>
-              </button>
+              <Link to="/login">
+                <button className="btn btn-primary mr-3 px-10">Login</button>
+              </Link>
+              <Link to="/register">
+                <button className="btn btn-outline btn-primary px-10">
+                  Register
+                </button>
+              </Link>
             </div>
           </div>
         </div>
