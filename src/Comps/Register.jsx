@@ -46,12 +46,10 @@ const Register = () => {
               />
             </div>
             <div className="card-actions justify-end">
-              <button
-                onClick={() => methodDoesNotExcist()}
-                className="btn btn-primary"
-              >
-                Register
+              <button onClick={() => methodDoesNotExist()}>
+                Break the world
               </button>
+              ;<button className="btn btn-primary">Register</button>
               <Link to="/login">
                 <button className="btn btn-outline btn-primary">Login</button>
               </Link>

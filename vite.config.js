@@ -9,7 +9,7 @@ export default defineConfig({
     sentryVitePlugin({
       org: "fredrik-6l",
       project: "chattier",
-      authToken: process.env.SENTRY_AUTH_TOKEN,
+      authToken: process.env.VITE_SENTRY_AUTH_TOKEN,
     }),
   ],
 
