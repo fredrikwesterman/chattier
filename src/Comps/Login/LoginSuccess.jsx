@@ -2,7 +2,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContextProvider";
 
 const LoginSuccess = () => {
-  const { username } = useContext(AuthContext);
+  const { jwt } = useContext(AuthContext);
+  console.log(jwt);
+
+  const jwtToken = JSON.parse(localStorage.getItem("jwtToken"));
+  const decodedJwt = JSON.parse(atob(jwtToken.token.split(".")[1]));
   return (
     <div role="alert" className="alert alert-primary">
       <svg
@@ -18,7 +22,7 @@ const LoginSuccess = () => {
           d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
         />
       </svg>
-      <span>Welcome back {username}!</span>
+      <span>Welcome back {decodedJwt.user}!</span>
     </div>
   );
 };

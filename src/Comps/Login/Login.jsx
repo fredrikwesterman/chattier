@@ -5,9 +5,23 @@ import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContextProvider";
 
 const Login = () => {
-  const { loginSuccess, setLoginSuccess } = useContext(AuthContext);
+  const {
+    loginSuccess,
+    setLoginSuccess,
+    setLoginFailed,
+    loginFailed,
+    checkAuth,
+  } = useContext(AuthContext);
 
   const navigate = useNavigate();
+
+  // checkAuth();
+
+  if (loginFailed) {
+    setTimeout(() => {
+      setLoginFailed(false);
+    }, 3000);
+  }
 
   if (loginSuccess) {
     setTimeout(() => {

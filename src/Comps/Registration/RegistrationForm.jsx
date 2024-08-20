@@ -1,11 +1,40 @@
 import { Link } from "react-router-dom";
+import RegistrationFailed from "./RegistrationFailed";
+import RegistrationCompleted from "./RegistrationCompleted";
+import { useContext, useRef, useState, useEffect } from "react";
+import { AuthContext } from "../../Context/AuthContextProvider";
+import EmptyInputField from "./EmptyInputField";
 
-const RegistrationForm = ({
-  setUsername,
-  setPassword,
-  setEmail,
-  registerNewUser,
-}) => {
+const RegistrationForm = () => {
+  const {
+    setUsername,
+
+    setPassword,
+
+    setEmail,
+    registrationSuccess,
+    userAlreadyExcist,
+    registerNewUser,
+  } = useContext(AuthContext);
+
+  const [emptyInputField, setEmptyInutField] = useState(false);
+
+  const usernameInput = useRef();
+  const passwordInput = useRef();
+  const emailInput = useRef();
+
+  // useEffect(() => {
+  //   if (
+  //     !usernameInput.current?.value ||
+  //     !passwordInput.current?.value ||
+  //     !emailInput.current?.value === ""
+  //   ) {
+  //     setEmptyInutField(true);
+  //   } else {
+  //     setEmptyInutField(false);
+  //   }
+  // }, []);
+
   return (
     <div
       style={{
@@ -23,6 +52,7 @@ const RegistrationForm = ({
               type="text"
               className="grow"
               placeholder="username"
+              ref={usernameInput}
               onChange={(e) => {
                 setUsername(e.target.value);
               }}
@@ -33,6 +63,7 @@ const RegistrationForm = ({
               type="password"
               className="grow"
               placeholder="password"
+              ref={passwordInput}
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
@@ -43,6 +74,7 @@ const RegistrationForm = ({
               type="email"
               className="grow"
               placeholder="Email"
+              ref={emailInput}
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
@@ -59,6 +91,9 @@ const RegistrationForm = ({
             </Link>
           </div>
         </div>
+        {registrationSuccess && <RegistrationCompleted />}
+        {userAlreadyExcist && <RegistrationFailed />}
+        {emptyInputField && <EmptyInputField />}
       </div>
     </div>
   );

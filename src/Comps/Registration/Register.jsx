@@ -1,7 +1,5 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContextProvider";
-import RegistrationFailed from "./RegistrationFailed";
-import RegistrationCompleted from "./RegistrationCompleted";
 import BreadCrumbs from "./BreadCrumbs";
 import RegistrationForm from "./RegistrationForm";
 import { useNavigate } from "react-router-dom";
@@ -69,14 +67,7 @@ const Register = () => {
   return (
     <>
       <BreadCrumbs />
-      <RegistrationForm
-        setUsername={setUsername}
-        setPassword={setPassword}
-        setEmail={setEmail}
-        registerNewUser={registerNewUser}
-      />
-      {registrationSuccess && <RegistrationCompleted />}
-      {userAlreadyExcist && <RegistrationFailed />}
+      <RegistrationForm />
     </>
   );
 };

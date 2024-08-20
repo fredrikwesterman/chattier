@@ -10,8 +10,9 @@ const AuthContextProvider = (props) => {
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [userAlreadyExcist, setUserAlreadyExcist] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
-  const [jwtToken, setjwtToken] = useState(null);
+  const [jwtToken, setJwtToken] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loginFailed, setLoginFailed] = useState(false);
 
   //Hämtar csrf token för registrering och inloggning.
   useEffect(() => {
@@ -71,6 +72,7 @@ const AuthContextProvider = (props) => {
 
   //Funktion för att logga in användare.
   const loginFunction = async () => {
+    setLoginFailed(false);
     try {
       const response = await fetch(
         "https://chatify-api.up.railway.app/auth/token",
@@ -86,24 +88,32 @@ const AuthContextProvider = (props) => {
           }),
         }
       );
+      if (!response.ok) {
+        throw new Error(setLoginFailed(true));
+      }
 
       const data = await response.json();
 
-      setjwtToken(data);
+      setJwtToken(data);
       setLoginSuccess(true);
       setIsAuthenticated(true);
-
-      if (!response.ok) {
-        throw new Error("wrong username or password, try again!");
-      }
     } catch (error) {
       console.log(error);
     }
   };
-  //om lyckad inloggning, sparas jwtn i localstorage.
+
   if (loginSuccess) {
     localStorage.setItem("jwtToken", JSON.stringify(jwtToken));
   }
+
+  // const checkAuth = () => {
+  //   const jwt = JSON.parse(localStorage.getItem("jwtToken"));
+  //   if (jwt) {
+  //     setIsAuthenticated(true);
+  //   }
+  // };
+
+  const jwt = JSON.parse(localStorage.getItem("jwtToken"));
 
   return (
     <AuthContext.Provider
@@ -118,10 +128,14 @@ const AuthContextProvider = (props) => {
         userAlreadyExcist,
         loginFunction,
         loginSuccess,
+        loginFailed,
+        setLoginFailed,
         setLoginSuccess,
         jwtToken,
         isAuthenticated,
         setIsAuthenticated,
+        loginFailed,
+        // checkAuth,
       }}
     >
       {props.children}
