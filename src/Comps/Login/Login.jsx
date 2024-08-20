@@ -1,10 +1,20 @@
-import { AuthContext } from "../../Context/AuthContextProvider";
-import { useContext } from "react";
 import LoginForm from "./LoginForm";
 import BreadCrumbs from "./BreadCrumbs";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../Context/AuthContextProvider";
 
 const Login = () => {
-  const { csrfToken } = useContext(AuthContext);
+  const { loginSuccess, setLoginSuccess } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  if (loginSuccess) {
+    setTimeout(() => {
+      navigate("/chat");
+      setLoginSuccess(false);
+    }, 3000);
+  }
 
   return (
     <>
