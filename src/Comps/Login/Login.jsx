@@ -17,12 +17,6 @@ const Login = () => {
 
   // checkAuth();
 
-  if (loginFailed) {
-    setTimeout(() => {
-      setLoginFailed(false);
-    }, 3000);
-  }
-
   if (loginSuccess) {
     setTimeout(() => {
       navigate("/chat");

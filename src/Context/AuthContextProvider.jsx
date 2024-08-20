@@ -102,6 +102,12 @@ const AuthContextProvider = (props) => {
     }
   };
 
+  if (loginFailed) {
+    setTimeout(() => {
+      setLoginFailed(false);
+    }, 3000);
+  }
+
   if (loginSuccess) {
     localStorage.setItem("jwtToken", JSON.stringify(jwtToken));
   }
