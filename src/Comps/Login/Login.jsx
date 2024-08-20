@@ -5,13 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContextProvider";
 
 const Login = () => {
-  const {
-    loginSuccess,
-    setLoginSuccess,
-    setLoginFailed,
-    loginFailed,
-    checkAuth,
-  } = useContext(AuthContext);
+  const { loginSuccess, setLoginSuccess } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
