@@ -11,6 +11,7 @@ const AuthContextProvider = (props) => {
   const [userAlreadyExcist, setUserAlreadyExcist] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [jwtToken, setjwtToken] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   //Hämtar csrf token för registrering och inloggning.
   useEffect(() => {
@@ -68,6 +69,7 @@ const AuthContextProvider = (props) => {
     }
   };
 
+  //Funktion för att logga in användare.
   const loginFunction = async () => {
     try {
       const response = await fetch(
@@ -89,6 +91,7 @@ const AuthContextProvider = (props) => {
 
       setjwtToken(data);
       setLoginSuccess(true);
+      setIsAuthenticated(true);
 
       if (!response.ok) {
         throw new Error("wrong username or password, try again!");
@@ -97,6 +100,7 @@ const AuthContextProvider = (props) => {
       console.log(error);
     }
   };
+  //om lyckad inloggning, sparas jwtn i localstorage.
   if (loginSuccess) {
     localStorage.setItem("jwtToken", JSON.stringify(jwtToken));
   }
@@ -116,6 +120,8 @@ const AuthContextProvider = (props) => {
         loginSuccess,
         setLoginSuccess,
         jwtToken,
+        isAuthenticated,
+        setIsAuthenticated,
       }}
     >
       {props.children}

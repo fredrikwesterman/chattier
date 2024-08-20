@@ -1,8 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../Context/AuthContextProvider";
 
 const Chat = () => {
   const navigate = useNavigate();
+
+  const { setIsAuthenticated } = useContext(AuthContext);
 
   const [decodedJwt, setDecodedJwt] = useState(null);
   const [logoutSuccess, setlogoutSuccess] = useState(false);
@@ -23,6 +26,7 @@ const Chat = () => {
       localStorage.clear("jwtToken");
       navigate("/login");
       setlogoutSuccess(false);
+      setIsAuthenticated(false);
     }, 2000);
   };
 
