@@ -10,14 +10,12 @@ const ProfilePage = () => {
   const [decodedJwt, setDecodedJwt] = useState(null);
   const [logoutSuccess, setlogoutSuccess] = useState(false);
 
-  const jwtToken = JSON.parse(localStorage.getItem("jwtToken"));
-  // if (jwtToken) {
-  //   setIsAuthenticated(true);
-  // }
-
   useEffect(() => {
-    const jwtDecoder = JSON.parse(atob(jwtToken.token.split(".")[1]));
-    setDecodedJwt(jwtDecoder);
+    const jwt = localStorage.getItem("jwtToken");
+    if (jwt) {
+      const decodedJwt = JSON.parse(atob(jwt.split(".")[1]));
+      setDecodedJwt(decodedJwt);
+    }
   }, []);
 
   console.log(decodedJwt);

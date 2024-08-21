@@ -11,7 +11,9 @@ const AuthContextProvider = (props) => {
   const [userAlreadyExcist, setUserAlreadyExcist] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [jwtToken, setJwtToken] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    sessionStorage.getItem("isAuthenticated") === "true"
+  );
   const [loginFailed, setLoginFailed] = useState(false);
 
   //Hämtar csrf token för registrering och inloggning.
@@ -94,32 +96,28 @@ const AuthContextProvider = (props) => {
 
       const data = await response.json();
 
-      setJwtToken(data);
+      setJwtToken(data.token);
       setLoginSuccess(true);
       setIsAuthenticated(true);
+      sessionStorage.setItem("isAuthenticated", true);
+      localStorage.setItem("jwtToken", data.token);
     } catch (error) {
       console.log(error);
     }
   };
 
-  if (loginFailed) {
-    setTimeout(() => {
-      setLoginFailed(false);
-    }, 3000);
-  }
-
-  if (loginSuccess) {
-    localStorage.setItem("jwtToken", JSON.stringify(jwtToken));
-  }
+  // if (loginFailed) {
+  //   setTimeout(() => {
+  //     setLoginFailed(false);
+  //   }, 3000);
+  // }
 
   // const checkAuth = () => {
   //   const jwt = JSON.parse(localStorage.getItem("jwtToken"));
-  //   if (jwt) {
+  //   if (jwt.token) {
   //     setIsAuthenticated(true);
   //   }
   // };
-
-  const jwt = JSON.parse(localStorage.getItem("jwtToken"));
 
   return (
     <AuthContext.Provider

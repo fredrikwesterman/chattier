@@ -1,12 +1,6 @@
-import { useContext } from "react";
-import { AuthContext } from "../../Context/AuthContextProvider";
-
 const LoginSuccess = () => {
-  const { jwt } = useContext(AuthContext);
-  console.log(jwt);
-
-  const jwtToken = JSON.parse(localStorage.getItem("jwtToken"));
-  const decodedJwt = JSON.parse(atob(jwtToken.token.split(".")[1]));
+  const jwt = localStorage.getItem("jwtToken");
+  const decodedJwt = JSON.parse(atob(jwt.split(".")[1]));
   return (
     <div role="alert" className="alert alert-primary">
       <svg

@@ -15,7 +15,7 @@ const Login = () => {
     setTimeout(() => {
       navigate("/chat");
       setLoginSuccess(false);
-    }, 3000);
+    }, 0);
   }
 
   return (

@@ -6,6 +6,8 @@ const ProtectedRoute = () => {
   const { isAuthenticated, checkAuth } = useContext(AuthContext);
   const location = useLocation();
 
+  console.warn("From ProtectedRoute: " + isAuthenticated);
+
   // checkAuth();
 
   return isAuthenticated ? (
