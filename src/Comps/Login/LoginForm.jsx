@@ -1,11 +1,10 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContextProvider";
-import LoginSuccess from "./LoginSuccess";
 import FailedLogin from "./FailedLogin";
 
 const LoginForm = () => {
-  const { loginFunction, setUsername, setPassword, loginSuccess, loginFailed } =
+  const { loginFunction, setUsername, setPassword, loginFailed } =
     useContext(AuthContext);
 
   return (
@@ -51,7 +50,6 @@ const LoginForm = () => {
             </Link>
           </div>
         </div>
-        {loginSuccess && <LoginSuccess />}
         {loginFailed && <FailedLogin />}
       </div>
     </div>

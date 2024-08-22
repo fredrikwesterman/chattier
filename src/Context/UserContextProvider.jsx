@@ -7,17 +7,14 @@ const UserContextProvider = (props) => {
 
   useEffect(() => {
     const jwt = localStorage.getItem("jwtToken");
-    console.log(jwt);
     if (jwt) {
       const decodedJwt = JSON.parse(atob(jwt.split(".")[1]));
       setUser(decodedJwt);
     }
   }, []);
 
-  console.info(user);
-
   return (
-    <UserContext.Provider value={{ user }}>
+    <UserContext.Provider value={{ user, setUser }}>
       {props.children}
     </UserContext.Provider>
   );

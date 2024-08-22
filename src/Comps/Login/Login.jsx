@@ -9,13 +9,9 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  // checkAuth();
-
   if (loginSuccess) {
-    setTimeout(() => {
-      navigate("/chat");
-      setLoginSuccess(false);
-    }, 0);
+    setLoginSuccess(false);
+    navigate("/chat");
   }
 
   return (

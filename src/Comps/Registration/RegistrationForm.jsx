@@ -1,39 +1,19 @@
 import { Link } from "react-router-dom";
 import RegistrationFailed from "./RegistrationFailed";
 import RegistrationCompleted from "./RegistrationCompleted";
-import { useContext, useRef, useState, useEffect } from "react";
+import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../Context/AuthContextProvider";
 import EmptyInputField from "./EmptyInputField";
 
 const RegistrationForm = () => {
   const {
     setUsername,
-
     setPassword,
-
     setEmail,
     registrationSuccess,
     userAlreadyExcist,
     registerNewUser,
   } = useContext(AuthContext);
-
-  const [emptyInputField, setEmptyInutField] = useState(false);
-
-  const usernameInput = useRef();
-  const passwordInput = useRef();
-  const emailInput = useRef();
-
-  // useEffect(() => {
-  //   if (
-  //     !usernameInput.current?.value ||
-  //     !passwordInput.current?.value ||
-  //     !emailInput.current?.value === ""
-  //   ) {
-  //     setEmptyInutField(true);
-  //   } else {
-  //     setEmptyInutField(false);
-  //   }
-  // }, []);
 
   return (
     <div
@@ -93,7 +73,6 @@ const RegistrationForm = () => {
         </div>
         {registrationSuccess && <RegistrationCompleted />}
         {userAlreadyExcist && <RegistrationFailed />}
-        {emptyInputField && <EmptyInputField />}
       </div>
     </div>
   );
