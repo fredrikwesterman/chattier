@@ -3,14 +3,14 @@ import App from "./Comps/App";
 import "./Style/index.css";
 import { BrowserRouter } from "react-router-dom";
 import AuthContextProvider from "./Context/AuthContextProvider";
-import UserContextProvider from "./Context/UserContextProvider";
+import ChatContextProvider from "./Context/ChatContextProvider";
 
 createRoot(document.getElementById("root")).render(
   <AuthContextProvider>
-    <UserContextProvider>
+    <ChatContextProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </UserContextProvider>
+    </ChatContextProvider>
   </AuthContextProvider>
 );

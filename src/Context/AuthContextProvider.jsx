@@ -15,6 +15,24 @@ const AuthContextProvider = (props) => {
     sessionStorage.getItem("isAuthenticated") === "true"
   );
   const [loginFailed, setLoginFailed] = useState(false);
+  const [user, setUser] = useState(null);
+
+  //funktion för att kolla om user finns, om den finns sätt user till rätt data så state sätts vid page refresh.
+  const setUserAndPersist = (userData) => {
+    setUser(userData);
+    if (userData) {
+      localStorage.setItem("user", JSON.stringify(userData));
+    } else {
+      localStorage.removeItem("user");
+    }
+  };
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   //Hämtar csrf token för registrering och inloggning.
   useEffect(() => {
@@ -97,27 +115,25 @@ const AuthContextProvider = (props) => {
       const data = await response.json();
 
       setJwtToken(data.token);
-      setLoginSuccess(true);
-      setIsAuthenticated(true);
+      const decodedJwt = JSON.parse(atob(data.token.split(".")[1]));
+      setUserAndPersist(decodedJwt);
       sessionStorage.setItem("isAuthenticated", true);
       localStorage.setItem("jwtToken", data.token);
+      setIsAuthenticated(true);
+      setLoginSuccess(true);
     } catch (error) {
       console.log(error);
+      setLoginFailed(true);
     }
   };
 
-  // if (loginFailed) {
-  //   setTimeout(() => {
-  //     setLoginFailed(false);
-  //   }, 3000);
-  // }
+  const [logoutSuccess, setlogoutSuccess] = useState(false);
 
-  // const checkAuth = () => {
-  //   const jwt = JSON.parse(localStorage.getItem("jwtToken"));
-  //   if (jwt.token) {
-  //     setIsAuthenticated(true);
-  //   }
-  // };
+  const logoutHandler = () => {
+    setlogoutSuccess(true);
+    localStorage.clear("jwtToken");
+    setUser(null);
+  };
 
   return (
     <AuthContext.Provider
@@ -139,7 +155,11 @@ const AuthContextProvider = (props) => {
         isAuthenticated,
         setIsAuthenticated,
         loginFailed,
-        // checkAuth,
+        logoutHandler,
+        logoutSuccess,
+        setlogoutSuccess,
+        user,
+        setUser,
       }}
     >
       {props.children}

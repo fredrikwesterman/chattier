@@ -1,9 +1,16 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContextProvider";
 
 const Chat = () => {
-  const { logoutHandler } = useContext(AuthContext);
+  const { logoutHandler, logoutSuccess } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  if (logoutSuccess) {
+    navigate("/login");
+  }
+
   return (
     <>
       <div className="breadcrumbs text-sm ml-10">

@@ -1,24 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
-import { UserContext } from "../Context/UserContextProvider";
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthContextProvider";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
 
-  const { user, setUser } = useContext(UserContext);
+  const { logoutHandler, logoutSuccess, setlogoutSuccess, user, setUser } =
+    useContext(AuthContext);
   console.log(user);
 
-  const [logoutSuccess, setlogoutSuccess] = useState(false);
-
-  const logoutHandler = () => {
-    setlogoutSuccess(true);
-    setTimeout(() => {
-      setUser(null);
-      localStorage.clear("jwtToken");
-      navigate("/login");
-      setlogoutSuccess(false);
-    }, 2000);
-  };
+  if (logoutSuccess) {
+    setlogoutSuccess(false);
+    navigate("/login");
+  }
 
   return (
     <>
