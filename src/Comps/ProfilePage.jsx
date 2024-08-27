@@ -1,18 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../Context/AuthContextProvider";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
 
-  const { logoutHandler, logoutSuccess, setlogoutSuccess, user, setUser } =
+  const { logoutHandler, logoutSuccess, setLogoutSuccess, user, setUser } =
     useContext(AuthContext);
   console.log(user);
 
-  if (logoutSuccess) {
-    setlogoutSuccess(false);
-    navigate("/login");
-  }
+  useEffect(() => {
+    if (logoutSuccess) {
+      setLogoutSuccess(false);
+      navigate("/login");
+    }
+  }, [logoutSuccess]);
 
   return (
     <>

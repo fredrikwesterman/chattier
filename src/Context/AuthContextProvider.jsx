@@ -127,10 +127,10 @@ const AuthContextProvider = (props) => {
     }
   };
 
-  const [logoutSuccess, setlogoutSuccess] = useState(false);
+  const [logoutSuccess, setLogoutSuccess] = useState(false);
 
   const logoutHandler = () => {
-    setlogoutSuccess(true);
+    setLogoutSuccess(true);
     localStorage.clear("jwtToken");
     setUser(null);
   };
@@ -157,7 +157,7 @@ const AuthContextProvider = (props) => {
         loginFailed,
         logoutHandler,
         logoutSuccess,
-        setlogoutSuccess,
+        setLogoutSuccess,
         user,
         setUser,
       }}
