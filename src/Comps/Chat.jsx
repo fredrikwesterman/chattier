@@ -71,7 +71,10 @@ const Chat = () => {
               <div key={idx} className="chat chat-start">
                 <div className="chat-header mb-1 flex">
                   {chat.username}
-                  <button onClick={deleteMessage} className="ml-20">
+                  <button
+                    onClick={() => deleteMessage(chat.id)}
+                    className="ml-20"
+                  >
                     ❌
                   </button>
                 </div>
@@ -96,7 +99,12 @@ const Chat = () => {
                 </div>
                 <div className="chat-header mb-1 flex">
                   {chat.username}
-                  <button className="ml-20">❌</button>
+                  <button
+                    onClick={() => deleteMessage(chat.id)}
+                    className="ml-20"
+                  >
+                    ❌
+                  </button>
                 </div>
                 <div className="chat-bubble">{chat.text}</div>
               </div>

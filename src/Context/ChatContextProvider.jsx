@@ -52,7 +52,9 @@ const ChatContextProvider = (props) => {
 
       const data = await response.json();
       setUserChat([...userChat, data.latestMessage]);
-    } catch (error) {}
+    } catch (error) {
+      console.error("There was a problem with your fetch operation:", error);
+    }
   };
 
   // const postNewMessage = () => {
