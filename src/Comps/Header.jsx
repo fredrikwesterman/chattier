@@ -63,7 +63,9 @@ const Header = () => {
                   <Link to="/profile-page">Profile</Link>
                 </li>
                 <li>
-                  <a onClick={logoutHandler}>Logout</a>
+                  <a className="text-secondary" onClick={logoutHandler}>
+                    Logout
+                  </a>
                 </li>
               </ul>
             </div>

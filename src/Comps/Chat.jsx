@@ -71,7 +71,7 @@ const Chat = () => {
       </div>
 
       <div className="flex justify-center">
-        <div className="mockup-window bg-base-300 border border-primary m-10 mt-20 w-1/2">
+        <div className="mockup-window bg-base-300 border border-primary m-10 w-1/2">
           <div className="flex">
             {/* Mockade Chattmeddelanden */}
             <div className="bg-base-200 px-4 mt-4 w-1/2">

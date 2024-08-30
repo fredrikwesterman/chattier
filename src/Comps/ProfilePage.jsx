@@ -27,7 +27,6 @@ const ProfilePage = () => {
             <img src={user.avatar} className="max-w-sm rounded-lg shadow-2xl" />
             <div>
               <h1 className="text-5xl font-bold">{user.user}</h1>
-              <p className="py-6"></p>
             </div>
           </div>
         </div>
