@@ -50,6 +50,12 @@ const Chat = () => {
     }
   };
 
+  const enterKeyPressHandler = (e) => {
+    if (e.key === "Enter") {
+      postNewMessage();
+    }
+  };
+
   return (
     <>
       <div className="breadcrumbs text-sm ml-10">
@@ -119,6 +125,7 @@ const Chat = () => {
             placeholder="Type message"
             className="input input-bordered input-primary w-full max-w-xs"
             onChange={(e) => setNewMessageInput(e.target.value)}
+            onKeyDown={enterKeyPressHandler}
           />
           <button
             onClick={postNewMessage}

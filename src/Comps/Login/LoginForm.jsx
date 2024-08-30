@@ -7,6 +7,12 @@ const LoginForm = () => {
   const { loginFunction, setUsername, setPassword, loginFailed } =
     useContext(AuthContext);
 
+  const enterKeyPressHandler = (e) => {
+    if (e.key === "Enter") {
+      loginFunction();
+    }
+  };
+
   return (
     <div
       style={{
@@ -27,6 +33,7 @@ const LoginForm = () => {
               onChange={(e) => {
                 setUsername(e.target.value);
               }}
+              onKeyDown={enterKeyPressHandler}
             />
           </label>
           <label className="input input-bordered flex items-center gap-2 mb-4">
@@ -37,6 +44,7 @@ const LoginForm = () => {
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
+              onKeyDown={enterKeyPressHandler}
             />
           </label>
           <div className="card-actions justify-end">

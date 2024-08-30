@@ -1,5 +1,5 @@
 import DOMPurify from "dompurify";
-import { createContext, useState, useContext } from "react";
+import { createContext, useState } from "react";
 
 export const ChatContext = createContext();
 
