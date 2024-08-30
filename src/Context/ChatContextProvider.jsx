@@ -1,11 +1,13 @@
 import DOMPurify from "dompurify";
-import { createContext, useState } from "react";
+import { createContext, useRef, useState } from "react";
 
 export const ChatContext = createContext();
 
 const ChatContextProvider = (props) => {
   const [userChat, setUserChat] = useState([]);
   const [newMessageInput, setNewMessageInput] = useState(null);
+
+  const messageInputField = useRef();
 
   const fetchUserMessages = async () => {
     try {
@@ -56,6 +58,7 @@ const ChatContextProvider = (props) => {
 
         const data = await response.json();
         setUserChat([...userChat, data.latestMessage]);
+        messageInputField.current.value = "";
       }
     } catch (error) {
       console.error("There was a problem with your fetch operation:", error);
@@ -71,6 +74,7 @@ const ChatContextProvider = (props) => {
           postNewMessage,
           newMessageInput,
           setNewMessageInput,
+          messageInputField,
         }}
       >
         {props.children}

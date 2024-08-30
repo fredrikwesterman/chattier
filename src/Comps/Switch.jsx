@@ -5,6 +5,7 @@ import Register from "./Registration/Register";
 import Chat from "./Chat";
 import ProfilePage from "./ProfilePage";
 import ProtectedRoute from "./Utils/ProtectedRoute";
+import UserSettings from "./UserSettings";
 
 const Switch = () => {
   return (
@@ -16,6 +17,7 @@ const Switch = () => {
         <Route element={<ProtectedRoute />}>
           <Route path="/chat" element={<Chat />} />
           <Route path="/profile-page" element={<ProfilePage />} />
+          <Route path="/settings" element={<UserSettings />} />
         </Route>
       </Routes>
     </>

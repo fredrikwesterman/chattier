@@ -1,23 +1,16 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContextProvider";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const ProfilePage = () => {
-  const navigate = useNavigate();
-
-  const { logoutHandler, logoutSuccess, setLogoutSuccess, user, setUser } =
-    useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   console.log(user);
-
-  useEffect(() => {
-    if (logoutSuccess) {
-      setLogoutSuccess(false);
-      navigate("/login");
-    }
-  }, [logoutSuccess]);
 
   return (
     <>
+      <Header />
       <div className="breadcrumbs text-sm ml-10">
         <ul>
           <li>
@@ -29,24 +22,19 @@ const ProfilePage = () => {
         </ul>
       </div>
       {user ? (
-        <div className="card card-side bg-base-100 shadow-xl">
-          <figure>
-            <img src={user.avatar} alt="Movie" className="w-20" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">{user.user}</h2>
-            <p></p>
-            <div className="card-actions justify-end">
-              <button onClick={logoutHandler} className="btn btn-primary">
-                Logout
-              </button>
+        <div className="hero bg-base-200 min-h-screen">
+          <div className="hero-content flex-col lg:flex-row">
+            <img src={user.avatar} className="max-w-sm rounded-lg shadow-2xl" />
+            <div>
+              <h1 className="text-5xl font-bold">{user.user}</h1>
+              <p className="py-6"></p>
             </div>
           </div>
         </div>
       ) : (
         <div>Loading....</div>
       )}
-      {logoutSuccess && <div>Later Gator!</div>}
+      <Footer />
     </>
   );
 };
