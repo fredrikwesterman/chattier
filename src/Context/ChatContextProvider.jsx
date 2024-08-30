@@ -1,3 +1,4 @@
+import DOMPurify from "dompurify";
 import { createContext, useState, useContext } from "react";
 
 export const ChatContext = createContext();
@@ -32,57 +33,34 @@ const ChatContextProvider = (props) => {
 
   const postNewMessage = async () => {
     try {
-      const response = await fetch(
-        "https://chatify-api.up.railway.app/messages",
-        {
-          method: "POST",
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("jwtToken"),
-            "Content-Type": "application.json",
-          },
-          body: JSON.stringify({
-            text: newMessageInput,
-            conversationId: null,
-          }),
-        }
-      );
-      if (!response.ok) {
-        console.log("Network error, Could not post message at the moment.");
-      }
+      if (newMessageInput) {
+        const sanitizedMessage = DOMPurify.sanitize(newMessageInput);
 
-      const data = await response.json();
-      setUserChat([...userChat, data.latestMessage]);
+        const response = await fetch(
+          "https://chatify-api.up.railway.app/messages",
+          {
+            method: "POST",
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("jwtToken"),
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              text: sanitizedMessage,
+              conversationId: null,
+            }),
+          }
+        );
+        if (!response.ok) {
+          console.log("Network error, Could not post message at the moment.");
+        }
+
+        const data = await response.json();
+        setUserChat([...userChat, data.latestMessage]);
+      }
     } catch (error) {
       console.error("There was a problem with your fetch operation:", error);
     }
   };
-
-  // const postNewMessage = () => {
-  //   // if (inputValue && inputValue.current.value.length > 0){
-  //   //     const newMessage = DOMPurify.sanitize(inputValue.current.value);
-  //   //     console.log(newMessage)
-
-  //   fetch("https://chatify-api.up.railway.app/messages", {
-  //     method: "POST",
-  //     headers: {
-  //       Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       text: newMessageInput,
-  //       conversationId: null,
-  //     }),
-  //   })
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         console.error("Problem with posting new message");
-  //       }
-  //       return response.json();
-  //     })
-  //     .catch((error) => {
-  //       console.error("There was a problem with your fetch operation:", error);
-  //     });
-  // };
 
   return (
     <>
