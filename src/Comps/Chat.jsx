@@ -9,7 +9,6 @@ const Chat = () => {
     fetchUserMessages,
     userChat,
     postNewMessage,
-    newMessageInput,
     setNewMessageInput,
     messageInputField,
   } = useContext(ChatContext);
