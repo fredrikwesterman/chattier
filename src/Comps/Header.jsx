@@ -24,15 +24,15 @@ const Header = () => {
           <div className="tooltip tooltip-left" data-tip="User settings">
             <Link to="/settings">
               <svg
-                class="h-8 w-8 text-primary"
+                className="h-8 w-8 text-primary"
                 width="15"
                 height="15"
                 viewBox="0 0 34 34"
-                stroke-width="2"
+                strokeWidth="2"
                 stroke="currentColor"
                 fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
                 {" "}
                 <path stroke="none" d="M0 0h24v24H0z" />{" "}

@@ -10,6 +10,9 @@ const Footer = () => {
         <Link to="/profile-page" className="link link-hover underline;">
           Profile Page
         </Link>
+        <Link to="/settings" className="link link-hover underline;">
+          Settings
+        </Link>
       </nav>
       <nav>
         <div className="grid grid-flow-col gap-4">
