@@ -61,16 +61,13 @@ const Chat = () => {
   return (
     <>
       <Header />
-      <div className="breadcrumbs text-sm ml-10">
-        <ul>
-          <li>
-            <Link to="/chat">Chat</Link>
-          </li>
-        </ul>
+
+      <div className="flex justify-center m-20">
+        <h2 className="text-5xl">CHAT ROOM</h2>
       </div>
 
       <div className="flex justify-center">
-        <div className="mockup-window bg-base-300 border border-primary m-10 w-1/2">
+        <div className="mockup-window bg-base-300 border border-primary mb-10 w-1/2">
           <div className="flex">
             {/* Mockade Chattmeddelanden */}
             <div className="bg-base-200 px-4 mt-4 w-1/2">

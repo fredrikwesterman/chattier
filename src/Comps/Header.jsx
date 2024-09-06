@@ -41,7 +41,39 @@ const Header = () => {
               </svg>
             </Link>
           </div>
-          <div className="tooltip tooltip-left" data-tip="Menu">
+          {user && (
+            <div className="tooltip tooltip-left" data-tip="Menu">
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div className="w-10 rounded-full">
+                    <img alt="avatar" src={user.avatar} />
+                  </div>
+                </div>
+                <span>{user.user}</span>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow border border-primary"
+                >
+                  <li>
+                    <Link to="/chat">Chat</Link>
+                  </li>
+                  <li>
+                    <Link to="/profile-page">Profile</Link>
+                  </li>
+                  <li>
+                    <a className="text-secondary" onClick={logoutHandler}>
+                      Logout
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
+          {/* <div className="tooltip tooltip-left" data-tip="Menu">
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
@@ -49,7 +81,8 @@ const Header = () => {
                 className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-10 rounded-full">
-                  <img alt="avatar" src={user} />
+                  <img alt="avatar" src={user.avatar} />
+                  <p>{user.user}</p>
                 </div>
               </div>
               <ul
@@ -69,7 +102,7 @@ const Header = () => {
                 </li>
               </ul>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="divider divider-primary"></div>

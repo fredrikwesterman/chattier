@@ -21,7 +21,7 @@ const ProfilePage = () => {
           </li>
         </ul>
       </div>
-      {user ? (
+      {user && (
         <div className="hero bg-base-200 min-h-screen">
           <div className="hero-content flex-col lg:flex-row">
             <img src={user.avatar} className="max-w-sm rounded-lg shadow-2xl" />
@@ -30,8 +30,6 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
-      ) : (
-        <div>Loading....</div>
       )}
       <Footer />
     </>
